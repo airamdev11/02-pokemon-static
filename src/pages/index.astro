@@ -1,16 +1,18 @@
 ---
+import PokemonCard from '@components/PokemonCard.astro';
+import type {PokemonListResponse} from '@interfaces/pokemon-list-response';
+import MainLayout from "@layouts/MainLayout.astro";
+
+const resp = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+const data = await resp.json() as PokemonListResponse;
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Pokemon Static | Home">
+	<h1 class="text-4xl font-bold py-5">Pokemon wiki</h1>
+	<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center gap-5 m-auto">
+			{data.results.map(pokemon=>
+				<PokemonCard name={pokemon.name} url={pokemon.url}/>
+			)}
+	</div>
+</MainLayout>

@@ -1,0 +1,6 @@
+.card:hover {
+    background-color: #5b70ce;
+    transform: scale(1.10);
+    cursor: pointer;
+}
+

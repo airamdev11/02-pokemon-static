@@ -1,0 +1,36 @@
+---
+import ViewTransitions from 'astro/components/ViewTransitions.astro';
+import {siteInfo} from '@consts/site-info';
+
+
+interface Props {
+  title?: string; // Required prop
+  image?: string;
+  description?: string;
+}
+
+const {title = siteInfo.title, description = siteInfo.description, image 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name = "description" content={description}/>
+    <meta name = "author" content="airamdev11"/>
+
+    <meta property = "og:title" content={title} />
+    <meta property = "og:description" content={description} />
+    <meta property = "og:image" content={image} />
+    
+
+    <title>{title}</title>
+    <ViewTransitions/>
+</head>
+<body class="bg-slate-800 text-slate-100 m-auto text-center">
+    <slot/>
+</body>
+</html>
